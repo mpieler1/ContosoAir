@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/mpieler/AAWD_MIPFiles/_apis/build/status/mpieler1.ContosoAir?branchName=master)](https://dev.azure.com/mpieler/AAWD_MIPFiles/_build/latest?definitionId=149&branchName=master)
+
 # This project is retired, archived, and no longer supported. You are welcome to continue to use and fork the repository.
 
 
