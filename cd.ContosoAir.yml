@@ -19,10 +19,26 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'specific'
+    project: 'af7da35a-d3d8-43c4-b8b2-1026a638d5cc'
+    pipeline: '149'
+    specificBuildWithTriggering: true
+    buildVersionToDownload: 'latest'
+    downloadType: 'single'
+    artifactName: 'drop'
+    downloadPath: '$(System.ArtifactsDirectory)'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Microsoft Azure Internal Consumption(0d66f947-f439-437c-97de-f5bc6686834c)'
+    subscriptionId: '0d66f947-f439-437c-97de-f5bc6686834c'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '$(resourcegroup)'
+    location: 'West US 2'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(System.ArtifactsDirectory)/drop/Templates/azuredeploy.json'
+    csmParametersFile: '$(System.ArtifactsDirectory)/drop/Templates/azuredeploy.parameters.json'
+    overrideParameters: '-p_environment $(web_environment) -p_site_prefix $(web_prefix) -p_site_web_name $(web_site)'
+    deploymentMode: 'Incremental'
