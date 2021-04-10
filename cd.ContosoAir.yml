@@ -49,4 +49,4 @@ steps:
     azureSubscription: 'Microsoft Azure Internal Consumption(0d66f947-f439-437c-97de-f5bc6686834c)'
     appType: 'webApp'
     WebAppName: '$(web_prefix)-$(web_site)-$(web_environment)'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(System.ArtifactsDirectory)/**/*.zip'
