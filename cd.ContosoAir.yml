@@ -42,3 +42,11 @@ steps:
     csmParametersFile: '$(System.ArtifactsDirectory)/drop/Templates/azuredeploy.parameters.json'
     overrideParameters: '-p_environment $(web_environment) -p_site_prefix $(web_prefix) -p_site_web_name $(web_site)'
     deploymentMode: 'Incremental'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Microsoft Azure Internal Consumption(0d66f947-f439-437c-97de-f5bc6686834c)'
+    appType: 'webApp'
+    WebAppName: '$(web_prefix)-$(web_site)-$(web_environment)'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
