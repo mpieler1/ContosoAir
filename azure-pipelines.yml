@@ -35,5 +35,8 @@ steps:
       SourceFolder: deployment
       Contents: '*.json'
       TargetFolder: $(build.artifactstagingdirectory)/Templates
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(build.artifactstagingdirectory)'
+      artifact: 'drop'
+      publishLocation: 'pipeline'
