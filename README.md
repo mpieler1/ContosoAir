@@ -68,7 +68,7 @@ What's left is to compress the whole folder in a zip file and upload it to Azure
   - Archive type: zip
 - [Publish Artifact](https://go.microsoft.com/fwlink/?LinkID=708390)
 
-### Release process tasks:
+### Release process steps:
 - [Azure Resource Group Deployment](https://aka.ms/argtaskreadme)
   - Template: select from the artifact in the Templates folder.
   - Template Parameters: same as previous parameter.
